@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload CSV File</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>Enter Your Information and Upload CSV</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+      <tr>
+        <th>Name:</th>
+        <td>{{ form.name }}</td>  </tr>
+      <tr>
+        <th>Email:</th>
+        <td>{{ form.email }}</td>  </tr>
+      <tr>
+        <th>Age:</th>
+        <td>{{ form.age }}</td>   </tr>
+    </table>
+    <br>
+    {{ form.csv_file }}  <br>
+    <button type="submit">Upload</button>
+  </form>
+  <footer>
+    <p>By AKSHAY SHINDE</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,56 @@
+
+
+{% load static %}
+ <!DOCTYPE html>
+ <html>
+ <head>
+     <title>Upload Success</title>
+     <link rel="stylesheet" href="css/styles.css">
+ </head>
+ <body>
+     <h1>Upload Successful</h1>
+     <h2>User Information:</h2>
+     <p>Name: {{ name }}</p>
+     <p>Email: {{ email }}</p>
+     <p>Age: {{ age }}</p>
+ 
+     <h2>Summary Statistics:</h2>
+     <table>
+         <thead>
+             <tr>
+                 <th>Column</th>
+                 <th>Count</th>
+                 <th>Mean</th>
+                 <th>Median</th>
+                 <th>Std</th>
+                 
+             </tr>
+         </thead>
+         <tbody>
+             {% for col, stats in summary_stats.items %}
+             <tr>
+                 <td>{{ col }}</td>
+                 <td>{{ stats.count }}</td>
+                 <td>{{ stats.mean|floatformat:2 }}</td>
+                 <td>{{ stats.50 }}</td>
+                 <td>{{ stats.std|floatformat:2 }}</td>
+                 <td>{{ stats.25 }}</td>
+                 <td>{{ stats.75 }}</td>
+             </tr>
+             {% endfor %}
+         </tbody>
+     </table>
+ 
+     <h2>Histograms:</h2>
+     {% for col, plot_data in plot_data_dict.items %}
+         <h3>{{ col }} Histogram</h3>
+         <img src="data:image/png;base64,{{ plot_data }}" alt="Histogram of {{ col }}">
+     {% endfor %}
+ 
+     <p><a href="{% url 'upload_csv' %}">Upload another file</a></p>
+     <footer class="footer"> 
+        <p>AKSHAY SHINDE</p>
+      </footer>
+ </body>
+ </html>'''
+ 
